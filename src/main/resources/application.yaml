@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: soap-web-client-21
+
+service:
+  security:
+    keystore:
+      location: keystore/emsnewkeystore.jks
+      alias: emsnewcert
+      password: emsnewpassword
+      private-key-password: emsnewpassword
+
+server:
+  port: 8081
