@@ -23,9 +23,9 @@ class SignSoapOperationTest {
   private static Stream<Arguments> requestFilePathProvider() {
     return Stream.of(
       /*TODO: 2 firsts results in incorrect value, because they are formatted and not raw*/
-      Arguments.of("soap-operation/soap-request-signed-new-token-break.xml"),
-      Arguments.of("soap-operation/soap-request-signed-old-signature-break.xml"),
-      Arguments.of("soap-operation/soap-request-signed-new-token-break-raw.xml")
+      Arguments.of("sign-soap-operation/soap-request-signed-new-token-break.xml"),
+      Arguments.of("sign-soap-operation/soap-request-signed-old-signature-break.xml"),
+      Arguments.of("sign-soap-operation/soap-request-signed-new-token-break-raw.xml")
     );
   }
 
@@ -35,9 +35,8 @@ class SignSoapOperationTest {
     final ClassPathResource resource = new ClassPathResource(filePath);
     final byte[] signedMessage = resource.getInputStream().readAllBytes();
     final byte[] bytes = signSoapOperation.alignLineBreaks(signedMessage);
-    final String stringified = new String(bytes, StandardCharsets.UTF_8);
     final String name = FilenameUtils.getName(filePath);
-    Path resourcePath = Paths.get("src/test/resources/%s/%s".formatted("soap-operation-output", name));
+    Path resourcePath = Paths.get("src/test/resources/%s/%s".formatted("sign-soap-operation-output", name));
     Files.write(resourcePath, bytes);
   }
 }
